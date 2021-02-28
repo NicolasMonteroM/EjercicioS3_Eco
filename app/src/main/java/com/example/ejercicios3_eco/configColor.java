@@ -31,7 +31,7 @@ public class configColor extends AppCompatActivity {
 
         blueBtn.setOnClickListener(
 
-                (v)-> {
+                (v) -> {
 
                     String blue = "#3F51B5";
                     preferences.edit().putString("bgColor", blue).apply();
@@ -42,7 +42,7 @@ public class configColor extends AppCompatActivity {
 
         blackBtn.setOnClickListener(
 
-                (v)-> {
+                (v) -> {
 
                     String black = "#3A3A3A";
                     preferences.edit().putString("bgColor", black).apply();
@@ -53,7 +53,7 @@ public class configColor extends AppCompatActivity {
 
         whiteBtn.setOnClickListener(
 
-                (v)-> {
+                (v) -> {
 
                     String white = "#FFFFFF";
                     preferences.edit().putString("bgColor", white).apply();
@@ -61,7 +61,6 @@ public class configColor extends AppCompatActivity {
                     finish();
                 }
         );
-
     }
 
     protected void onResume() {
@@ -69,7 +68,7 @@ public class configColor extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("colors", MODE_PRIVATE);
 
         String bgColor = preferences.getString("bgColor", "#FFFFFF");
-        String typeColor = preferences.getString("typeColor","#FFFFFF");
+        String typeColor = preferences.getString("typeColor", "#FFFFFF");
         bg.setBackgroundColor(Color.parseColor(bgColor));
         tittleTv.setTextColor(Color.parseColor(typeColor));
         textTv.setTextColor(Color.parseColor(typeColor));

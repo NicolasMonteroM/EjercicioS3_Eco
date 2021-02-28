@@ -3,6 +3,7 @@ package com.example.ejercicios3_eco;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class calcularNota extends AppCompatActivity {
 
@@ -39,14 +38,18 @@ public class calcularNota extends AppCompatActivity {
 
         calculateBtn.setOnClickListener(
 
-                (v)->{
+                (v) -> {
 
                     calculateGrade();
-                    Toast.makeText(this, "" + averageRounded, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(this, "" + averageRounded, Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(this, gradeResult.class);
+                    String average = String.valueOf(averageRounded);
+                    i.putExtra("average", average);
+                    startActivity(i);
+                    finish();
 
                 }
         );
-
     }
 
     protected void onResume() {
@@ -54,7 +57,7 @@ public class calcularNota extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("colors", MODE_PRIVATE);
 
         String bgColor = preferences.getString("bgColor", "#FFFFFF");
-        String typeColor = preferences.getString("typeColor","#FFFFFF");
+        String typeColor = preferences.getString("typeColor", "#FFFFFF");
         bg.setBackgroundColor(Color.parseColor(bgColor));
         tittleTv.setTextColor(Color.parseColor(typeColor));
         textTv.setTextColor(Color.parseColor(typeColor));
@@ -66,7 +69,7 @@ public class calcularNota extends AppCompatActivity {
 
     }
 
-    public void calculateGrade(){
+    public void calculateGrade() {
 
         double grade1 = Double.parseDouble(proyectoUnoInput.getText().toString());
         double grade2 = Double.parseDouble(proyectoDosInput.getText().toString());

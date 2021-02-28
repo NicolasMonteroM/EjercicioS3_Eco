@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout bg;
     private EditText nameInput;
-    private Button configBtn;
-        private Button okBtn;
+    private Button configBtn, okBtn;
     private TextView textTv;
 
     @Override
@@ -35,33 +34,27 @@ public class MainActivity extends AppCompatActivity {
 
         configBtn.setOnClickListener(
 
-                (v)->{
-                    Intent i = new Intent(this,configColor.class);
+                (v) -> {
+                    Intent i = new Intent(this, configColor.class);
                     startActivity(i);
                 }
         );
 
         okBtn.setOnClickListener(
 
-                (v)->{
+                (v) -> {
 
-                   /* if (nameInput.getText().toString() != ""){
-
-                        i.putExtra("name", name);
-
-                    }*/
-
-                    if (nameInput.getText().toString().isEmpty()){
+                    if (nameInput.getText().toString().isEmpty()) {
                         Toast.makeText(this, "Ingrese un nombre para calcular su nota", Toast.LENGTH_LONG).show();
-                    } else{
+                    } else {
                         String name = nameInput.getText().toString();
                         preferences.edit().putString("name", name).apply();
                         Intent i = new Intent(this, calcularNota.class);
                         startActivity(i);
+                        nameInput.setText("");
                     }
                 }
         );
-
     }
 
     protected void onResume() {
@@ -69,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("colors", MODE_PRIVATE);
 
         String bgColor = preferences.getString("bgColor", "#FFFFFF");
-        String typeColor = preferences.getString("typeColor","#FFFFFF");
+        String typeColor = preferences.getString("typeColor", "#FFFFFF");
         bg.setBackgroundColor(Color.parseColor(bgColor));
         nameInput.setTextColor(Color.parseColor(typeColor));
         textTv.setTextColor(Color.parseColor(typeColor));
